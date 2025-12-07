@@ -1,0 +1,33 @@
+[user]
+	email = js@jshost.com
+	name = js
+
+[alias]
+	aa = add .
+
+    b = branch --show-current
+	bb = !git for-each-ref --sort='-authordate' --format='%(authordate)%09%(authorname)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'
+
+	c = checkout
+	
+	ca = commit -am
+	cm = commit -m
+
+	df = diff
+
+    gone = ! git fetch -p && git for-each-ref --format '%(refname:short) %(upstream:track)' | awk '$2 == \"[gone]\" {print $1}' | xargs -r git branch -D
+
+    h = rev-parse --short HEAD
+
+	lg = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+
+    pp = push
+    pn = !git push --set-upstream origin $(git branch --show-current)
+
+	st = status -s
+
+[push]
+	followTags = true
+
+[pull]
+	rebase = true

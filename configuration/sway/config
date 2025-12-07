@@ -1,0 +1,10 @@
+set $mod Mod4
+
+exec foot
+
+bindsym $mod+Shift+e exit
+bindsym $mod+Shift+w exit
+
+input * {
+    xkb_layout es
+}

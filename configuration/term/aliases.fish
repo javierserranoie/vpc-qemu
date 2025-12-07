@@ -1,0 +1,44 @@
+alias aws-local='aws --endpoint-url=http://localhost.localstack.cloud:14566'
+
+alias b='bat'
+
+alias ccli='cursor-agent'
+alias code='/usr/bin/cursor'
+alias cursor="/usr/bin/cursor"
+
+alias da='direnv allow'
+
+alias dk='docker'
+
+alias g='git'
+alias gg='git'
+
+alias j='just'
+
+alias sjou='sudo journalctl'
+
+alias k8='kubectl'
+alias k8c='kubectl config use-context'
+alias k8a='k8 apply -f'
+alias k8d='k8 delete -f'
+alias k8p='k8 get pods -o name|grep'
+alias k8n='k8 config set-context --current --namespace'
+alias kpcli='keepassxc-cli'
+
+alias la='ls -alh --group-directories-first'
+alias less='less --use-color'
+alias ll='ls -lh --group-directories-first'
+
+alias rr='source ~/.config/fish/config.fish'
+
+alias sp='sudo pacman'
+alias ssys='sudo systemctl'
+
+alias t='touch'
+alias tx='tmux'
+
+alias v='nvim'
+alias vf='nvim (fzf -m)'
+
+alias xcp='xclip -selection clipboard'
+
