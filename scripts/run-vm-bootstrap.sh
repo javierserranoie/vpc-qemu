@@ -2,13 +2,15 @@
 # qemu-img create -f qcow2 -F qcow2 -b arch.qcow2 arch-vm1.qcow2
 set -euo pipefail
 
-ISO="${ISO:-/home/js/Downloads/linux.iso}"
+ISO="${ISO:-$HOME/Downloads/linux.iso}"
 VM_ID="${VM_ID:-1}"
 VM_IMG="${VM_IMG:-images/linux-$VM_ID.qcow2}"
 VM_PORT=$(printf '%02u' "$VM_ID")
 MAC_SUFFIX=$(printf '%02x' "$VM_ID")
 VM_MAC="52:54:00:12:34:${MAC_SUFFIX}"
+VM_SIZE=${VM_SIZE:-25G}
 
+qemu-img create -f qcow2 ${VM_IMG} ${VM_SIZE}
 qemu-system-x86_64 \
     -enable-kvm \
     -cpu host \

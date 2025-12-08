@@ -1,33 +1,30 @@
 default:
     just --list
 
-setup:
-    scripts/setup-vpc.sh
+setup ISO IMG:
+    VM_ISO={{ISO}} VAM_IMG={{IMG}} scripts/run-vm-bootstrap.sh
 
-run VM_ID MODE:
+run MODE VM_IMG:
+    #!/usr/bin/env bash
     case "{{ MODE }}" in
-    terminal)
-        VM_ID={{VM_ID}} scripts/run-vm-terminal.sh 
+    t|terminal)
+        VM_IMG={{VM_IMG}} scripts/run-vm-terminal.sh 
         ;;
-    graphical)
-        VM_ID={{VM_ID}} scripts/run-vm-graphical.sh 
+    g|graphical)
+        VM_IMG={{VM_IMG}} scripts/run-vm-graphical.sh 
         ;;
-    vps)
-        VM_ID={{VM_ID}} scripts/run-vm-vps.sh 
+    v|vps)
+        VM_IMG={{VM_IMG}} scripts/run-vm-vps.sh 
         ;;
     *)
-        VM_ID={{VM_ID}} scripts/run-vm-terminal.sh 
+        VM_IMG={{VM_IMG}} scripts/run-vm-terminal.sh 
         ;;
     esac
 
-setup VM_ID:
-    VM_ID={{VM_ID}} scripts/run-vm-setup.sh
-    VM_ID={{VM_ID}} scripts/network-setup.sh
-
 run-vpc:
-    VM_ID=1 scripts/run-vm-vps.sh
-    VM_ID=2 scripts/run-vm-vps.sh
-    VM_ID=3 scripts/run-vm-vps.sh
+    VM_ID=1 VM_IMG=images/arch-vm1.qcow2 scripts/run-vm-vps.sh
+    VM_ID=2 VM_IMG=images/arch-vm2.qcow2 scripts/run-vm-vps.sh
+    VM_ID=3 VM_IMG=images/arch-vm3.qcow2 scripts/run-vm-vps.sh
 
 stop-all:
     #!/usr/bin/env bash
