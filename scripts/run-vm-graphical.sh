@@ -16,3 +16,8 @@ qemu-system-x86_64 \
     -drive file=${VM_IMG},if=virtio,format=qcow2 \
     -netdev user,id=n${VM_ID},hostfwd=tcp::22${VM_PORT}-:22 \
     -device virtio-net,netdev=n${VM_ID},mac="${VM_MAC}"
+#-device virtio-gpu-gl-pci \
+#-display gtk,gl=on \
+#-device virtio-gpu-gl-pci \
+#-display gtk,gl=on \
+#-serial mon:stdio \
