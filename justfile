@@ -2,7 +2,7 @@ default:
     just --list
 
 setup ISO IMG="./images/linux.qcow2":
-    ISO={{ISO}} VAM_IMG={{IMG}} scripts/run-vm-bootstrap.sh
+    ISO={{ISO}} VM_IMG={{IMG}} scripts/run-vm-bootstrap.sh
 
 run MODE VM_IMG:
     #!/usr/bin/env bash

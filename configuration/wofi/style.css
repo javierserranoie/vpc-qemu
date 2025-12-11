@@ -25,6 +25,7 @@ window {
 }
 
 image {
+    background: none;
     margin-right: 10px;
     margin-left: 10px;
 }
@@ -33,10 +34,12 @@ image {
     padding: 0.5em;
 }
 
-#entry:hover {
-    background-color: #444444;
-    transition: background-color 0.3s ease;
-    padding: 0.5em;
+#text, #text:selected {
+    background: none;
+}
+
+#entry #text:selected {
+    background: none !important;
 }
 
 #entry:selected {

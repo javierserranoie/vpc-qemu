@@ -18,17 +18,17 @@ set $term foot
 # Your preferred application launcher
 set $menu wofi --show
 
-seat seat0 xcursor_theme capitaine-cursors 36
+seat seat0 xcursor_theme capitaine-cursors 30
 
 exec waybar
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /home/js/Pictures/default.jpg fill
+output * bg /home/js/Pictures/wallpapers/default.jpg fill
 #
 # Example configuration:
 #
-output Virtual-1 resolution 1920x1080 position 1920,0
+output eDP-1 resolution 1920x1080 position 1920,0
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
@@ -52,10 +52,10 @@ output Virtual-1 resolution 1920x1080 position 1920,0
 input type:touchpad {
     dwt enabled
     tap enabled
-    natural_scroll enabled
+    natural_scroll disabled
     middle_emulation enabled
-    pointer_accel 0.3
-    scroll_factor 0.08
+    pointer_accel 0.8
+    scroll_factor 0.2
 }
 
 input type:keyboard {
@@ -219,10 +219,11 @@ bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
 bindsym Print exec grim
 
 #
-# Apllications:
+# Applications:
 #
 bindsym $mod+w exec helium-browser
-bindsym $mod+c exec flameshot gui
+bindsym Alt+F4 exec wlogout
+bindsym $mod+c exec grim -g "$(slurp)" - | swappy -f -
 
 
 #
