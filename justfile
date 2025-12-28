@@ -4,20 +4,20 @@ default:
 setup ISO IMG="./images/linux.qcow2":
     ISO={{ISO}} VM_IMG={{IMG}} scripts/run-vm-bootstrap.sh
 
-run MODE VM_IMG:
+run MODE VM_IMG VM_ID="1":
     #!/usr/bin/env bash
     case "{{ MODE }}" in
     t|terminal)
-        VM_IMG={{VM_IMG}} scripts/run-vm-terminal.sh 
+        VM_IMG={{VM_IMG}} VM_ID={{VM_ID}} scripts/run-vm-terminal.sh 
         ;;
     g|graphical)
-        VM_IMG={{VM_IMG}} scripts/run-vm-graphical.sh 
+        VM_IMG={{VM_IMG}} VM_ID={{VM_ID}} scripts/run-vm-graphical.sh 
         ;;
     v|vps)
-        VM_IMG={{VM_IMG}} scripts/run-vm-vps.sh 
+        VM_IMG={{VM_IMG}} VM_ID={{VM_ID}} scripts/run-vm-vps.sh 
         ;;
     *)
-        VM_IMG={{VM_IMG}} scripts/run-vm-terminal.sh 
+        VM_IMG={{VM_IMG}} VM_ID={{VM_ID}} scripts/run-vm-terminal.sh 
         ;;
     esac
 
