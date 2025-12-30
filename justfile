@@ -25,9 +25,9 @@ setup-vpc:
     scripts/setup-vpc.sh
 
 run-vpc:
-    VM_ID=1 VM_IMG=images/arch-vm1.qcow2 scripts/run-vm-vps.sh
-    VM_ID=2 VM_IMG=images/arch-vm2.qcow2 scripts/run-vm-vps.sh
-    VM_ID=3 VM_IMG=images/arch-vm3.qcow2 scripts/run-vm-vps.sh
+    VM_ID=1 VM_IMG=images/debian-13-1.qcow2 scripts/run-vm-vps.sh
+    VM_ID=2 VM_IMG=images/debian-13-2.qcow2 scripts/run-vm-vps.sh
+    VM_ID=3 VM_IMG=images/debian-13-3.qcow2 scripts/run-vm-vps.sh
 
 stop:
     ssh root@10.100.1.30 'poweroff'

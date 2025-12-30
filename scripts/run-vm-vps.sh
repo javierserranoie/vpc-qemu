@@ -9,12 +9,21 @@ MAC_SUFFIX=$(printf '%02x' "$VM_ID")
 VM_MAC="52:54:00:12:34:${MAC_SUFFIX}"
 TAP_IF="tap-k8s${VM_ID}"
 
+OVMF_CODE=/usr/share/OVMF/x64/OVMF_CODE.4m.fd
+OVMF_VARS=$HOME/workspace/vpc-qemu/OVMF_VARS_${VM_ID}.4m.fd
+
+[ ! -f "$OVMF_VARS" ] && cp /usr/share/OVMF/x64/OVMF_VARS.4m.fd "$OVMF_VARS"
+
 qemu-system-x86_64 \
-    -machine q35,accel=kvm \
     -enable-kvm \
     -cpu host \
     -smp sockets=1,cores=4,threads=1 \
     -m size=4G,slots=2,maxmem=8G \
+    -blockdev node-name=ovmf_code_file,driver=file,filename="$OVMF_CODE",read-only=on \
+    -blockdev node-name=ovmf_code,driver=raw,file=ovmf_code_file,read-only=on \
+    -blockdev node-name=ovmf_vars_file,driver=file,filename="$OVMF_VARS" \
+    -blockdev node-name=ovmf_vars,driver=raw,file=ovmf_vars_file \
+    -machine q35,accel=kvm,pflash0=ovmf_code,pflash1=ovmf_vars \
     -blockdev driver=file,filename=${VM_IMG},node-name=drive0_file \
     -blockdev driver=qcow2,file=drive0_file,node-name=drive0_qcow2 \
     -device virtio-blk-pci,drive=drive0_qcow2,bootindex=1 \
