@@ -1,0 +1,20 @@
+---
+- name: Copy worker network config script
+  copy:
+    src: network-worker.config
+    dest: /tmp/network-worker.config
+    mode: '0755'
+
+- name: Apply worker-specific iptables rules
+  command: /tmp/network-worker.config
+  register: worker_config_result
+  changed_when: true
+
+- name: Display worker config output
+  debug:
+    var: worker_config_result.stdout_lines
+  when: worker_config_result.stdout_lines is defined
+
+- name: Save and restart iptables
+  command: /usr/local/bin/fix_iptables.sh
+  changed_when: true

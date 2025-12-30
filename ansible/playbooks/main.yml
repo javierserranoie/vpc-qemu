@@ -1,0 +1,24 @@
+---
+- name: Apply common configurations to all hosts
+  hosts: all
+  become: yes
+  roles:
+    - common
+
+- name: Apply controlplane configurations
+  hosts: controlplane
+  become: yes
+  roles:
+    - controlplane
+
+- name: Apply kubernetes configurations
+  hosts: kubernetes
+  become: yes
+  roles:
+    - kubernetes
+
+- name: Apply worker configurations
+  hosts: worker
+  become: yes
+  roles:
+    - worker

@@ -1,0 +1,16 @@
+---
+- name: Copy kubernetes network config script
+  copy:
+    src: network-kubernetes.config
+    dest: /tmp/network-kubernetes.config
+    mode: '0755'
+
+- name: Apply kubernetes-specific sysctl configuration
+  command: /tmp/network-kubernetes.config
+  register: kubernetes_config_result
+  changed_when: true
+
+- name: Display kubernetes config output
+  debug:
+    var: kubernetes_config_result.stdout_lines
+  when: kubernetes_config_result.stdout_lines is defined

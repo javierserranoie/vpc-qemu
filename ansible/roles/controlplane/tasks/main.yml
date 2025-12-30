@@ -1,0 +1,20 @@
+---
+- name: Copy controlplane network config script
+  copy:
+    src: network-controlplane.config
+    dest: /tmp/network-controlplane.config
+    mode: '0755'
+
+- name: Apply controlplane-specific iptables rules
+  command: /tmp/network-controlplane.config
+  register: controlplane_config_result
+  changed_when: true
+
+- name: Display controlplane config output
+  debug:
+    var: controlplane_config_result.stdout_lines
+  when: controlplane_config_result.stdout_lines is defined
+
+- name: Save and restart iptables
+  command: /usr/local/bin/fix_iptables.sh
+  changed_when: true

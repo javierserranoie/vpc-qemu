@@ -1,0 +1,5 @@
+---
+# Ansible Galaxy requirements (if any)
+# Example:
+# - name: geerlingguy.docker
+#   version: 4.0.0
