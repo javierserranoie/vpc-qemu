@@ -1,1 +1,2 @@
 images/debian-13.qcow2 filter=lfs diff=lfs merge=lfs -text
+images/debian-13-nocloud-amd64.qcow2 filter=lfs diff=lfs merge=lfs -text

@@ -1,4 +1,2 @@
-images/
-*.qcow2
 .env
 JOIN_INSTRUCTIONS.md
