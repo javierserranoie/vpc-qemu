@@ -1,5 +1,5 @@
 #cloud-config
-hostname: {{ inventory_hostname }}
+hostname: node-1
 locale: en_US.UTF-8
 keyboard:
   layout: es
@@ -9,10 +9,10 @@ users:
     sudo: ALL=(ALL) NOPASSWD:ALL
     shell: /bin/bash
     lock_passwd: false
-    passwd: "{{ debian_password_hash | default(debian_user_password | password_hash('sha512')) }}"
+    passwd: "$6$O5cWGwE/ujy963Cw$yPzx8W0GvzmeG5.ZKQ3d1SPG0g3P7E8iP.1BX4XgSkH/b4bNpHw1ksnrzKQ9e7W3DkPqiSWqogX47CQjYrHp30"
     groups: [adm, audio, cdrom, dialout, dip, floppy, lxd, netdev, plugdev, sudo, video]
     ssh_authorized_keys:
-      - {{ ansible_ssh_public_key_content | default(ssh_public_key) }}
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBx9tOXmE7sQzeom2e4MH+k6g7VbARz9GXqGmaeJfmZ/ javiserranoie@gmail.com
 
 packages:
   - kbd
@@ -25,7 +25,7 @@ packages:
   - neovim
 
 runcmd:
-  - echo "debian:{{ debian_user_password }}" | chpasswd
+  - echo "debian:debian" | chpasswd
   - locale-gen en_US.UTF-8
   - update-locale LANG=en_US.UTF-8
   - DEBIAN_FRONTEND=noninteractive apt-get update
